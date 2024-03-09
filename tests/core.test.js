@@ -8,8 +8,8 @@ describe("test suite", () => {
   });
 });
 
-describe("test suite", () => {
-  it("test case", () => {
+describe("test suite2", () => {
+  it("test case2", () => {
     const result = { id: 1, name: "Abhi" };
     expect(result).toMatchObject({ name: "Abhi" });
     expect(result).toHaveProperty("name");
@@ -72,5 +72,14 @@ describe("getCoupons", () => {
 describe("calculateDiscount", () => {
   it("should return discounted price if given valid code", () => {
     expect(calculateDiscount(10, "SAVE10")).toBe(9);
+    expect(calculateDiscount(10, "SAVE20")).toBe(8);
+  });
+
+  it("should handle non-numeric price", () => {
+    expect(calculateDiscount("10", "SAVE10")).toMatch(/invalid/i);
+  });
+
+  it("should handle invalid discount code", () => {
+    expect(calculateDiscount(10, "INVALID")).toBe(10);
   });
 });
