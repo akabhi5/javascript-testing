@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   calculateDiscount,
   canDrive,
+  fetchData,
+  fetchDataFail,
   getCoupons,
   isPriceInRange,
   isValidUsername,
@@ -219,5 +221,33 @@ describe("isPriceInRange parametrized", () => {
     { scenario: "price > max", price: 200, result: false },
   ])("should return $result when $scenario", ({ price, result }) => {
     expect(isPriceInRange(price, 0, 100)).toBe(result);
+  });
+});
+
+describe("fetchData - then", () => {
+  it("should return an array of numbers", () => {
+    fetchData().then((result) => {
+      expect(Array.isArray(result)).toBe(true);
+      expect(result.length).toBeGreaterThan(0);
+    });
+  });
+});
+
+describe("fetchData - async await", () => {
+  it("should return an array of numbers", async () => {
+    const result = await fetchData();
+    expect(Array.isArray(result)).toBe(true);
+    expect(result.length).toBeGreaterThan(0);
+  });
+});
+
+describe("fetchDataFail", () => {
+  it("should return an array of numbers", async () => {
+    try {
+      const result = await fetchDataFail();
+    } catch (error) {
+      expect(error).toHaveProperty("reason");
+      expect(error.reason).toMatch(/fail/i);
+    }
   });
 });
