@@ -34,3 +34,15 @@ describe("test suite - mocking", () => {
     expect(greet).toHaveBeenCalledOnce();
   });
 });
+
+describe("test suite 2", () => {
+  it("test case", () => {
+    const sendText = vi.fn();
+    sendText.mockReturnValue("ok");
+
+    const result = sendText("message");
+
+    expect(sendText).toHaveBeenCalledWith("message");
+    expect(result).toBe("ok");
+  });
+});
