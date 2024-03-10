@@ -1,4 +1,12 @@
-import { describe, expect, it } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+} from "vitest";
 import {
   calculateDiscount,
   canDrive,
@@ -249,5 +257,31 @@ describe("fetchDataFail", () => {
       expect(error).toHaveProperty("reason");
       expect(error.reason).toMatch(/fail/i);
     }
+  });
+});
+
+describe("test suite - teardown", () => {
+  beforeAll(() => {
+    console.log("executed before all test once");
+  });
+
+  beforeEach(() => {
+    console.log("executed before each test everytime");
+  });
+
+  afterAll(() => {
+    console.log("executed after all test");
+  });
+
+  afterEach(() => {
+    console.log("executed after every test");
+  });
+
+  it("test 1", () => {
+    console.log("test 1");
+  });
+
+  it("test 2", () => {
+    console.log("test 2");
   });
 });
