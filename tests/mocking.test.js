@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   getDiscount,
   getPriceInCurrency,
@@ -58,7 +58,7 @@ describe('test suite - mocking', () => {
     const greet = vi.fn();
     greet.mockImplementation((name) => 'hello ' + name); // func body
 
-    const result = greet('abhi');
+    greet('abhi');
     expect(greet).toHaveBeenCalled();
     expect(greet).toHaveBeenCalledWith('abhi');
     expect(greet).toHaveBeenCalledOnce();
@@ -168,7 +168,7 @@ describe('signUp', () => {
   });
 
   it('should send the welcome email if email is valid', async () => {
-    const result = await signUp(email);
+    await signUp(email);
 
     expect(sendEmail).toHaveBeenCalledOnce();
     const args = vi.mocked(sendEmail).mock.calls[0];
